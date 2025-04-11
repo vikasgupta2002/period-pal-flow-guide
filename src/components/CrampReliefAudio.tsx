@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -109,7 +108,6 @@ const CrampReliefAudio = () => {
 
   const handleCategoryChange = (categoryId: string) => {
     setSelectedCategory(categoryId);
-    // Auto-select first track in category
     const category = audioCategories.find(cat => cat.id === categoryId);
     if (category && category.tracks.length > 0) {
       if (isPlaying) {
@@ -124,13 +122,11 @@ const CrampReliefAudio = () => {
 
   const handleTrackSelect = (track: AudioTrack) => {
     if (currentTrack?.id === track.id && isPlaying) {
-      // If the same track is selected and playing, pause it
       if (audioRef.current) {
         audioRef.current.pause();
       }
       setIsPlaying(false);
     } else {
-      // Load and play new track
       setCurrentTrack(track);
       if (audioRef.current) {
         audioRef.current.src = track.src;
@@ -171,7 +167,6 @@ const CrampReliefAudio = () => {
     }
   };
 
-  // Get the current category data
   const currentCategory = audioCategories.find(cat => cat.id === selectedCategory);
 
   return (
@@ -187,7 +182,6 @@ const CrampReliefAudio = () => {
           <p className="text-gray-600">Choose your calm:</p>
         </div>
 
-        {/* Category Selection */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {audioCategories.map((category) => (
             <Button
@@ -208,7 +202,6 @@ const CrampReliefAudio = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Track List */}
           <div className="lg:col-span-1 space-y-4">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
               {currentCategory?.emoji} {currentCategory?.name}
@@ -250,7 +243,6 @@ const CrampReliefAudio = () => {
             ))}
           </div>
 
-          {/* Player and Visualization */}
           <div className="lg:col-span-2">
             <Card className="bg-white/80 shadow-lg border-none overflow-hidden">
               <CardContent className="p-6">
@@ -258,7 +250,6 @@ const CrampReliefAudio = () => {
                   <>
                     <div className="flex flex-col items-center justify-center mb-8">
                       <div className="w-full max-w-md h-32 bg-lavender-light/30 rounded-xl mb-4 flex items-center justify-center overflow-hidden">
-                        {/* Simple visualization */}
                         <div className="flex items-end justify-center gap-1 h-20 w-56">
                           {Array.from({ length: 12 }).map((_, i) => (
                             <div
@@ -344,16 +335,16 @@ const CrampReliefAudio = () => {
         </div>
       </div>
 
-      {/* Hidden audio element */}
       <audio ref={audioRef} className="hidden" />
 
-      {/* Add CSS for animation */}
-      <style jsx>{`
+      <style>
+        {`
         @keyframes sound-wave {
           0%, 100% { height: 4px; }
           50% { height: 28px; }
         }
-      `}</style>
+        `}
+      </style>
     </section>
   );
 };
