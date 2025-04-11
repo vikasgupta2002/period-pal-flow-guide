@@ -13,11 +13,21 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main>
-        <Hero />
-        <TrackerSection />
-        <MythBuster />
-        <BeginnerGuide />
-        <FeelGoodSection />
+        <section id="home">
+          <Hero />
+        </section>
+        <section id="tracker">
+          <TrackerSection />
+        </section>
+        <section id="myths">
+          <MythBuster />
+        </section>
+        <section id="guide">
+          <BeginnerGuide />
+        </section>
+        <section id="feelgood">
+          <FeelGoodSection />
+        </section>
       </main>
       <Footer />
     </div>
