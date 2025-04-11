@@ -1,9 +1,15 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { CalendarIcon, ArrowRight } from 'lucide-react';
 
 const Hero = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white to-pink-light/30 pt-16 pb-20">
       <div className="container mx-auto px-4 md:px-6">
@@ -16,11 +22,18 @@ const Hero = () => {
               Hey, it's okay. We've all been there. Let's flow through it together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="rounded-full bg-pink-dark hover:bg-pink text-white">
+              <Button 
+                className="rounded-full bg-pink-dark hover:bg-pink text-white"
+                onClick={() => scrollToSection('tracker')}
+              >
                 <CalendarIcon className="mr-2 h-4 w-4" />
                 Track Your Period
               </Button>
-              <Button variant="outline" className="rounded-full border-lavender-dark text-lavender-dark hover:bg-lavender-light">
+              <Button 
+                variant="outline" 
+                className="rounded-full border-lavender-dark text-lavender-dark hover:bg-lavender-light"
+                onClick={() => scrollToSection('guide')}
+              >
                 Beginner's Guide
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

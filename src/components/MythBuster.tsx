@@ -34,6 +34,26 @@ const myths = [
     myth: "If you miss a period, you're pregnant",
     truth: "While pregnancy is one reason for a missed period, stress, weight changes, excessive exercise, hormonal imbalances, and other factors can also cause missed periods.",
     icon: "😰"
+  },
+  {
+    myth: "Period blood is dirty or toxic",
+    truth: "Period blood is just a mixture of blood, tissue from the uterine lining, and natural secretions. It's not dirty, toxic, or harmful in any way.",
+    icon: "💧"
+  },
+  {
+    myth: "You can't get pregnant during your period",
+    truth: "While less likely, it's still possible to get pregnant if you have sex during your period, especially if you have a shorter cycle or longer periods.",
+    icon: "👶"
+  },
+  {
+    myth: "Pain during periods is always normal",
+    truth: "While mild to moderate discomfort is common, severe pain that interferes with daily life could indicate conditions like endometriosis and should be discussed with a healthcare provider.",
+    icon: "🩺"
+  },
+  {
+    myth: "Tampons take away virginity",
+    truth: "Using tampons does not affect virginity. Virginity is about sexual experience, not physical characteristics. The hymen (a thin tissue) can stretch, not 'break', and varies naturally in all bodies.",
+    icon: "💭"
   }
 ];
 

@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { CalendarIcon, Heart, Menu, X } from 'lucide-react';
+import { Heart, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
@@ -49,14 +48,6 @@ const Navbar = () => {
           <NavLink onClick={() => scrollToSection('myths')}>Myth Busters</NavLink>
           <NavLink onClick={() => scrollToSection('guide')}>Beginner's Guide</NavLink>
           <NavLink onClick={() => scrollToSection('feelgood')}>Feel-Good</NavLink>
-          <Button 
-            variant="outline" 
-            className="rounded-full bg-lavender-light hover:bg-lavender text-lavender-dark hover:text-lavender-dark font-medium" 
-            size="sm"
-          >
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            Log In
-          </Button>
         </nav>
 
         {/* Mobile navigation overlay */}
@@ -83,14 +74,6 @@ const Navbar = () => {
             <MobileNavLink onClick={() => scrollToSection('myths')}>Myth Busters</MobileNavLink>
             <MobileNavLink onClick={() => scrollToSection('guide')}>Beginner's Guide</MobileNavLink>
             <MobileNavLink onClick={() => scrollToSection('feelgood')}>Feel-Good</MobileNavLink>
-            <Button 
-              variant="outline" 
-              className="rounded-full bg-lavender-light hover:bg-lavender text-lavender-dark hover:text-lavender-dark font-medium w-full max-w-xs mt-4" 
-              size="sm"
-            >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              Log In
-            </Button>
           </nav>
         </div>
       </div>
