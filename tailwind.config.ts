@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,21 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				pink: {
+					light: '#FFDEE2',
+					DEFAULT: '#F8B8C1',
+					dark: '#E67D8E'
+				},
+				lavender: {
+					light: '#E5DEFF',
+					DEFAULT: '#C4B8E9',
+					dark: '#9b87f5'
+				},
+				peach: {
+					light: '#FDE1D3',
+					DEFAULT: '#FBC8AF',
+					dark: '#F7A87B'
 				}
 			},
 			borderRadius: {
@@ -84,11 +100,19 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 6s ease-in-out infinite'
+			},
+			fontFamily: {
+				nunito: ['Nunito', 'sans-serif']
 			}
 		}
 	},
