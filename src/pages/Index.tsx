@@ -6,6 +6,7 @@ import TrackerSection from '@/components/TrackerSection';
 import MythBuster from '@/components/MythBuster';
 import BeginnerGuide from '@/components/BeginnerGuide';
 import FeelGoodSection from '@/components/FeelGoodSection';
+import CrampReliefAudio from '@/components/CrampReliefAudio';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -27,6 +28,9 @@ const Index = () => {
         </section>
         <section id="feelgood">
           <FeelGoodSection />
+        </section>
+        <section id="cramprelief">
+          <CrampReliefAudio />
         </section>
       </main>
       <Footer />

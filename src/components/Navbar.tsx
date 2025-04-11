@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Heart, Menu, X } from 'lucide-react';
@@ -48,6 +49,7 @@ const Navbar = () => {
           <NavLink onClick={() => scrollToSection('myths')}>Myth Busters</NavLink>
           <NavLink onClick={() => scrollToSection('guide')}>Beginner's Guide</NavLink>
           <NavLink onClick={() => scrollToSection('feelgood')}>Feel-Good</NavLink>
+          <NavLink onClick={() => scrollToSection('cramprelief')}>Cramp Relief</NavLink>
         </nav>
 
         {/* Mobile navigation overlay */}
@@ -74,6 +76,7 @@ const Navbar = () => {
             <MobileNavLink onClick={() => scrollToSection('myths')}>Myth Busters</MobileNavLink>
             <MobileNavLink onClick={() => scrollToSection('guide')}>Beginner's Guide</MobileNavLink>
             <MobileNavLink onClick={() => scrollToSection('feelgood')}>Feel-Good</MobileNavLink>
+            <MobileNavLink onClick={() => scrollToSection('cramprelief')}>Cramp Relief</MobileNavLink>
           </nav>
         </div>
       </div>
