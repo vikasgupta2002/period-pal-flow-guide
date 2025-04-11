@@ -1,8 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Play, Pause, RepeatIcon, Heart, Volume2 } from 'lucide-react';
+import { Play, Pause, RepeatIcon, Heart, Volume2, Upload } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from '@/components/ui/use-toast';
 
 interface AudioCategory {
   id: string;
@@ -24,8 +26,28 @@ const CrampReliefAudio = () => {
   const [isLooping, setIsLooping] = useState(false);
   const [currentTrack, setCurrentTrack] = useState<AudioTrack | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
   
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const createBucketIfNotExists = async () => {
+      try {
+        const { data, error } = await supabase.storage.getBucket('audio-tracks');
+        if (error && error.message.includes('does not exist')) {
+          const { error: createError } = await supabase.storage.createBucket('audio-tracks', {
+            public: true,
+          });
+          if (createError) throw createError;
+          console.log('Created audio-tracks bucket');
+        }
+      } catch (error) {
+        console.error('Error with storage bucket:', error);
+      }
+    };
+
+    createBucketIfNotExists();
+  }, []);
 
   const audioCategories: AudioCategory[] = [
     {
@@ -44,6 +66,12 @@ const CrampReliefAudio = () => {
           title: 'Calm Breath Visualization',
           src: 'https://cdn.pixabay.com/download/audio/2021/07/24/audio_98e642180f.mp3?filename=meditation-yoga-slow-down-93513.mp3',
           description: 'Visualize a soft golden light with each breath, easing your discomfort.'
+        },
+        {
+          id: 'user-breath1',
+          title: 'Fall Sound',
+          src: 'https://gofile.io/d/L3jUs7',
+          description: 'A soothing autumn melody to help you relax and ease cramp tension.'
         }
       ]
     },
@@ -103,6 +131,12 @@ const CrampReliefAudio = () => {
           description: 'Be gentle with yourself today. You deserve care and comfort.'
         }
       ]
+    },
+    {
+      id: 'user-uploads',
+      name: 'My Collection',
+      emoji: '🎵',
+      tracks: []
     }
   ];
 
@@ -131,7 +165,14 @@ const CrampReliefAudio = () => {
       if (audioRef.current) {
         audioRef.current.src = track.src;
         audioRef.current.loop = isLooping;
-        audioRef.current.play().catch(err => console.error("Error playing audio:", err));
+        audioRef.current.play().catch(err => {
+          console.error("Error playing audio:", err);
+          toast({
+            title: "Playback Error",
+            description: "There was an issue playing this track. It may be restricted by the source website.",
+            variant: "destructive",
+          });
+        });
         setIsPlaying(true);
       }
     }
@@ -146,7 +187,14 @@ const CrampReliefAudio = () => {
       }
     } else {
       if (audioRef.current) {
-        audioRef.current.play().catch(err => console.error("Error playing audio:", err));
+        audioRef.current.play().catch(err => {
+          console.error("Error playing audio:", err);
+          toast({
+            title: "Playback Error",
+            description: "There was an issue playing this track. It may be restricted by the source website.",
+            variant: "destructive",
+          });
+        });
       }
     }
     setIsPlaying(!isPlaying);
@@ -165,6 +213,15 @@ const CrampReliefAudio = () => {
     } else {
       setFavorites([...favorites, trackId]);
     }
+  };
+
+  const handleAudioError = () => {
+    toast({
+      title: "Playback Error",
+      description: "The audio couldn't be played. The source might be restricted or unavailable.",
+      variant: "destructive",
+    });
+    setIsPlaying(false);
   };
 
   const currentCategory = audioCategories.find(cat => cat.id === selectedCategory);
@@ -335,7 +392,7 @@ const CrampReliefAudio = () => {
         </div>
       </div>
 
-      <audio ref={audioRef} className="hidden" />
+      <audio ref={audioRef} className="hidden" onError={handleAudioError} />
 
       <style>
         {`
